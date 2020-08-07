@@ -1,0 +1,50 @@
+<ColorSlider@Slider>:
+    min: 0
+    max: 1
+    value: 0.5
+    size_hint_y: None
+    height: 50
+
+<DrawingWidget>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Interface>:
+    orientation: 'vertical'
+    DrawingWidget:
+        target_color_rgb: red_slider.value, green_slider.value, blue_slider.value
+        target_width_px: width_slider.value
+    ColorSlider:
+        id: red_slider
+    ColorSlider:
+        id: green_slider
+    ColorSlider:
+        id: blue_slider
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 50
+        Label:
+            text: 'output color:'
+        Widget:
+            canvas:
+                Color:
+                    rgb: red_slider.value, green_slider.value, blue_slider.value
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 50
+        Label:
+            text: 'width: {:.1f}'.format(width_slider.value)
+        Slider:
+            id: width_slider
+            min: 2
+            max: 10
+            value: 2

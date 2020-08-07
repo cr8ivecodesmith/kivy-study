@@ -1,0 +1,46 @@
+<ColorSlider@Slider>:
+    min: 0
+    max: 1
+    value: 0.5
+    size_hint_y: None
+    height: 50
+
+<DrawingWidget>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        # We can now clean up the code from the python file and take
+        # advantage of automatic event binding from here.
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Interface>:
+    orientation: 'vertical'
+    DrawingWidget:
+    ColorSlider:
+        id: red_slider
+    ColorSlider:
+        id: green_slider
+    ColorSlider:
+        id: blue_slider
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 50
+        Label:
+            text: 'output color:'
+        Widget:
+            # We can still set canvas instructions from within the kv lang
+            canvas:
+                Color:
+                    # rgb: 0, 1, 0  # Use a fixed color for now
+                    # We can now refer to other widgets defined in kv lang
+                    # via their `id` property.
+                    rgb: red_slider.value, green_slider.value, blue_slider.value
+                Rectangle:
+                    # Since we are initializing this from the kv lang,
+                    # event binding is automatic!
+                    # size and pos are automatically adapted from widget's
+                    size: self.size
+                    pos: self.pos

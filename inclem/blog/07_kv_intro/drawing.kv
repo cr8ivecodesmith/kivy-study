@@ -1,0 +1,23 @@
+# We can create a seperate class that defines
+# common values.
+# Ref: https://kivy.org/doc/stable/guide/lang.html?highlight=kvlang#dynamic-classes
+<ColorSlider@Slider>:
+    min: 0
+    max: 1
+    value: 0.5
+    size_hint_y: None
+    height: 50
+
+<Interface>:
+    orientation: 'vertical'
+    DrawingWidget:
+    ColorSlider:
+    ColorSlider:
+    ColorSlider:
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 50
+        Label:
+            text: 'output color:'
+        Widget:
